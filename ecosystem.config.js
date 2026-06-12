@@ -3,6 +3,7 @@ module.exports = {
     {
       name: 'bengkel-frontend',
       script: 'node_modules/next/dist/bin/next',
+      interpreter: '/root/.nvm/versions/node/v20.14.0/bin/node',
       args: 'start',
       instances: 1,
       autorestart: true,

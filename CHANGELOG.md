@@ -2,6 +2,11 @@
 
 Semua perubahan penting pada proyek ini akan dicatat di file ini. Format ini terinspirasi dari [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.1] - 2026-06-12
+
+### Added
+- **Ganti setting ecosystem**: mengganti settingan pm2 untuk bisa run versi 10 dengan intepreter
+
 ## [1.0.0] - 2026-06-12
 
 ### Added
