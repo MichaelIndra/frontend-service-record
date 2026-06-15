@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import pkg from '@/package.json';
 
 const menuItems = [
   { name: 'Dashboard', href: '/', icon: '📊' },
@@ -14,6 +15,7 @@ const menuItems = [
 export default function Sidebar({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
+  const appVersion = pkg.version || '1.0.0';
 
   return (
     <div className="flex h-screen w-screen bg-gray-100 overflow-hidden">
@@ -68,11 +70,17 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
         </nav>
 
         {/* Footer Sidebar */}
-        <div className="p-4 border-t border-slate-700 text-xs h-14 flex items-center overflow-hidden whitespace-nowrap text-slate-400">
+        <div className="p-4 border-t border-slate-700 text-xs h-16 flex flex-col justify-center overflow-hidden whitespace-nowrap text-slate-400">
           {isOpen ? (
-            <span>Logged in as Admin</span>
+            <div className="flex flex-col gap-0.5 transition-all duration-300">
+              <span className="text-slate-300 font-medium">Logged in as Admin</span>
+              <span className="text-[10px] text-slate-500 font-mono tracking-wider">Versi {appVersion}</span>
+            </div>
           ) : (
-            <span className="mx-auto text-lg" title="Logged in as Admin">👤</span>
+            // Saat sidebar mengecil, tampilkan nomor versi singkatnya saja (misal: "v1.0") sebagai pengganti status
+            <span className="mx-auto text-[10px] font-mono text-slate-500 font-bold bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700/50" title={`Aplikasi Versi ${appVersion}`}>
+              v{appVersion.split('.').slice(0, 2).join('.')}
+            </span>
           )}
         </div>
       </aside>

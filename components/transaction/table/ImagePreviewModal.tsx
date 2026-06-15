@@ -5,7 +5,7 @@ import { useState } from 'react';
 interface InvoicePhotoModalProps {
     isOpen: boolean;
     onClose: () => void;
-    data: string[] | null;
+    data: any; // 🔴 Diubah ke any karena data dari backend bisa berupa string mentah "['path']" atau array asli
 }
 
 export default function InvoicePhotoModal({ isOpen, onClose, data }: InvoicePhotoModalProps) {
@@ -13,6 +13,7 @@ export default function InvoicePhotoModal({ isOpen, onClose, data }: InvoicePhot
 
     if (!isOpen) return null;
 
+    // Fungsi pembersih string array gaib milikmu
     const getCleanUrls = (inputData: any): string[] => {
         if (!inputData) return [];
 
@@ -43,9 +44,12 @@ export default function InvoicePhotoModal({ isOpen, onClose, data }: InvoicePhot
     const getImageUrl = (dbPath: string) => {
         if (!dbPath) return '';
         let cleanPath = dbPath.replace(/\\/g, '/'); // Ubah backslash \ jadi forward slash /
-        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ; // Fallback ke lokal jika env belum terbaca
         return `${baseUrl}/${cleanPath}`;
     };
+
+    // 🟢 SAKTI: Bersihkan dulu data mentah menjadi array string murni di sini
+    const cleanedImages = getCleanUrls(data);
 
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-opacity animate-fadeIn">
@@ -64,8 +68,9 @@ export default function InvoicePhotoModal({ isOpen, onClose, data }: InvoicePhot
                 {/* Modal Body */}
                 <div className="p-6 overflow-y-auto flex-1">
                     <div className="flex flex-col items-center justify-center gap-6">
-                        {data && data.length > 0 ? (
-                            data.map((imgUrl: string, idx: number) => {
+                        {/* 🟢 SEKARANG KITA LOOPING DARI HASIL YANG SUDAH BERSIH */}
+                        {cleanedImages && cleanedImages.length > 0 ? (
+                            cleanedImages.map((imgUrl: string, idx: number) => {
                                 const fullApiUrl = getImageUrl(imgUrl);
                                 return (
                                     <div key={idx} className="border border-gray-200 p-3 rounded-xl bg-gray-50 w-full max-w-md shadow-sm">

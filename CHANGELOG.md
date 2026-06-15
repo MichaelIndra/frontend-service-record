@@ -2,6 +2,14 @@
 
 Semua perubahan penting pada proyek ini akan dicatat di file ini. Format ini terinspirasi dari [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.2] - 2026-06-15
+
+### Added
+- **Version Frontend**: Menambahkan fungsi untuk menampilkan versi frontendnya. Diganti package.json
+
+### Edited
+- **Tabel Transaction**: Membuat dan menambahkan image untuk service dan sparepart
+
 ## [1.0.1] - 2026-06-12
 
 ### Added
