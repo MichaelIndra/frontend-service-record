@@ -33,6 +33,7 @@ export const getKendaraanByNoPol = async (nopol: string) => {
 
 export const getKendaraanByStatus = async (status: number) =>{
     const res = await apiClient(`${PATH}/getKendaraanByStatus/${status}`, {
+        cache: 'no-store'
     })
     return res
 }

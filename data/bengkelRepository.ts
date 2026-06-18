@@ -44,6 +44,7 @@ export const getBengkelById = async (id: number) => {
 
 export const getBengkelByStatus = async (status: number) =>{
     const res = await apiClient(`${PATH}/getBengkelByStatus/${status}`, {
+        cache: 'no-store'
     })
     return res
 }

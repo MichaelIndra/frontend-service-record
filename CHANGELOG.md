@@ -2,6 +2,11 @@
 
 Semua perubahan penting pada proyek ini akan dicatat di file ini. Format ini terinspirasi dari [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.0.3] - 2026-06-18
+### Edited
+- **Bengkel dan Kendaraan Repository**: menambahkan no-cache supaya tidak di simpan
+
+
 ## [1.0.2] - 2026-06-15
 
 ### Added
